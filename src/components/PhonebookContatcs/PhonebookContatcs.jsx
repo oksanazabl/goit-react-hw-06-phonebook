@@ -2,12 +2,7 @@ import css from './PhonebookContatcs.module.css';
 import { useCallback } from 'react';
 
 const PhonebookContacts = ({ contacts, onDeleteContact }) => {
-  const handleDeleteContact = useCallback(
-    id => {
-      onDeleteContact(id);
-    },
-    [onDeleteContact]
-  );
+
 
   return (
     <ul>
@@ -17,7 +12,7 @@ const PhonebookContacts = ({ contacts, onDeleteContact }) => {
           <button
             className={css.button}
             type="button"
-            onClick={() => handleDeleteContact(id)}
+            onClick={() => onDeleteContact(id)}
           >
             Delete Contact
           </button>

@@ -33,8 +33,8 @@ function App() {
 
     const newContact = { ...contact, id };
     setContacts(prevContacts => {
-      const updatedContacts = [...prevContacts, newContact];
-      return updatedContacts;
+      return  [...prevContacts, newContact];
+       
     });
   };
 
