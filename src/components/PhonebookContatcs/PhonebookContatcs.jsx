@@ -1,14 +1,14 @@
 import css from './PhonebookContatcs.module.css';
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import { deleteContact } from '../reducers/index';
+import { useCallback } from 'react';
 
-const PhonebookContacts = ({ contacts }) => {
-  const dispatch = useDispatch();
+const PhonebookContacts = ({ contacts, onDeleteContact }) => {
+  const handleDeleteContact = useCallback(
+    id => {
+      onDeleteContact(id);
+    },
+    [onDeleteContact]
+  );
 
-  const handleDeleteContact = (id) => {
-    dispatch(deleteContact(id));
-  };
   return (
     <ul>
       {contacts.map(({ id, name, number }) => (

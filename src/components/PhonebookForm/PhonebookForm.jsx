@@ -1,32 +1,26 @@
-// import css from './PhonebookForm.module.css';
+import css from './PhonebookForm.module.css';
 import React, { useState } from 'react';
-// import PropTypes from 'prop-types';
-// import { useState,  } from 'react';
-// import { nanoid } from 'nanoid';
-import { useDispatch } from 'react-redux';
-import { addContact } from '../reducers';
+import PropTypes from 'prop-types';
 
-const PhonebookForm = () => {
+const PhonebookForm = ({ onSubmit, handleChange }) => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-  const dispatch = useDispatch();
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(addContact({ name, number }));
-    // const contact = {name,number};
-    // onSubmit(contact);
+    const contact = {name,number};
+    onSubmit(contact);
     setName('');
-    setNumber('');
+    setNumber('')
   };
 
-  //   const handleNameChange = e => {
-  //     setName(e.target.value);
-  //   };
+  const handleNameChange = e => {
+    setName(e.target.value);
+  };
 
-  //  const handleNumberChange = e => {
-  //     setNumber(e.target.value)
-  //   };
+ const handleNumberChange = e => {
+    setNumber(e.target.value)
+  };
 
   return (
     <form className={css.form} onSubmit={handleSubmit}>
@@ -59,6 +53,11 @@ const PhonebookForm = () => {
       </button>
     </form>
   );
+};
+
+PhonebookForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
 };
 
 export default PhonebookForm;
