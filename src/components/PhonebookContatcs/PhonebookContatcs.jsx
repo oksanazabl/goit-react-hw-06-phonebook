@@ -1,13 +1,16 @@
 import css from './PhonebookContatcs.module.css';
-import { useCallback } from 'react';
 
-const PhonebookContacts = ({ contacts, onDeleteContact }) => {
-  const handleDeleteContact = useCallback(
-    id => {
-      onDeleteContact(id);
-    },
-    [onDeleteContact]
-  );
+import { getContacts, deleteContact } from 'redux/contactSlice';
+import { useSelector, useDispatch } from 'react-redux';
+
+const PhonebookContacts = () => {
+  const dispatch = useDispatch();
+  const contacts = useSelector(getContacts);
+  const filterValue = useSelector(state => state.filter.filter).toLowerCase();
+
+  const handleDeleteContact = id => {
+    dispatch(deleteContact(id));
+  };
 
   return (
     <ul>

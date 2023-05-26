@@ -1,28 +1,28 @@
-import PropTypes from 'prop-types';
 import css from './PhonebookFilter.module.css';
-// import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { setFilter } from 'redux/filterSlice';
 
-const PhonebookFilter = ({ onFilterSet, filter }) => {
+const PhonebookFilter = () => {
+  const dispatch = useDispatch();
+
+  const onChange = e => {
+    const value = e.target.value.toLowerCase();
+    dispatch(setFilter(value));
+  };
   return (
     <>
       <label className={css.filter}>
         <p>Search contacts by name</p>
         <input
           name="filter"
-          onInput={onFilterSet}
+          onInput={onChange}
           type="text"
           placeholder="Search contacts by name"
-          value={filter}
+          // value={filter}
         />
       </label>
     </>
   );
-};
-
-
-PhonebookFilter.propTypes = {
-  onFilterSet: PropTypes.func,
-  filter: PropTypes.string.isRequired,
 };
 
 export default PhonebookFilter;
