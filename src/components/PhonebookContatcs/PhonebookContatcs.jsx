@@ -9,13 +9,18 @@ const PhonebookContacts = () => {
   const contacts = useSelector(getContacts);
   const filterValue = useSelector(getFilter).toLowerCase();
 
+   const filteredContacts = contacts.filter(contact =>
+    contact.name.toLowerCase().includes(filterValue)
+  );
+
+
   const handleDeleteContact = id => {
     dispatch(deleteContact(id));
   };
 
   return (
     <ul>
-      {contacts.map(({ id, name, number }) => (
+      {filteredContacts.map(({ id, name, number }) => (
         <li className={css.contact_item} key={id}>
           {name}: {number}
           <button
